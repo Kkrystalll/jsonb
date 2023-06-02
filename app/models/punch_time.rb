@@ -1,0 +1,2 @@
+class PunchTime < ApplicationRecord
+end

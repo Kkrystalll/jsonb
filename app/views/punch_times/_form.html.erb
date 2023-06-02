@@ -1,0 +1,39 @@
+<%= form_with(model: punch_time) do |form| %>
+  <% if punch_time.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(punch_time.errors.count, "error") %> prohibited this punch_time from being saved:</h2>
+
+      <ul>
+        <% punch_time.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :punch_time, style: "display: block" %>
+    <%= form.datetime_field :punch_time %>
+  </div>
+
+  <div>
+    <%= form.label :punch_type, style: "display: block" %>
+    <%= form.text_field :punch_type %>
+  </div>
+
+  <div>
+    <%= form.label :punch_note, style: "display: block" %>
+    <%= form.fields_for :punch_note do |note_form| %>
+      <div>
+        <%= note_form.date_field :date, placeholder: '請輸入日期' %>
+      </div>
+      <div>
+        <%= note_form.text_field :note, placeholder: '請輸入備註' %>
+      </div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
